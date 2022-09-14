@@ -7,19 +7,22 @@ const inquirer = require('inquirer');
 
 
 
-// This creates the prompts neccesary for the user to answer
+//Full page html template 
+
+//Function tthat creates the prompts neccesary for the user to answer,but now just in one go
+function memberpush(){
 inquirer
   .prompt([
     {
       type: 'input',
-      message: 'Enter managers name:',
-      name:"manager",
+      message: 'Enter name:',
+      name:"name",
       validate: (value)=> {if(value){
           return true} else{return "Please insert value"}}
     },
     {
       type: 'input',
-      message: 'Enter id:',
+      message: 'Enter your id:',
       name:"id",
       validate: (value)=> {if(value){
         return true} else{return "Please insert value"}}
@@ -32,17 +35,18 @@ inquirer
         return true} else{return "Please insert value"}}
     },
     {
-        type: 'input',
-        message: 'Enter the maangers office number',
-        name: 'officenumber',
-        validate: (value)=> {if(value){
-            return true} else{return "Please insert value"}}
-        }
+      type: 'list',
+      message: 'License:',
+      choices:["Manager","Engineer","Intern"],
+      name: 'role',
+      validate: (value)=> {if(value){
+          return true} else{return "Please insert value"}}
+    },
       
 
 
   ])
-  .then(({title,description,installation,usage,credit,test,contributing,license,gitHub,email}) =>{
+  .then(({name,id,email,role}) =>{
     const readMe =`# ${title}
     
   * [Installation](#installation)
@@ -80,6 +84,7 @@ inquirer
 
    } 
    );
+}
 
    function Newfilegenerator(fileName,data){
 
