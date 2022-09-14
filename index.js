@@ -1,35 +1,37 @@
+
+// This calls on the inquirer package
 const fs = require('fs');
 const inquirer = require('inquirer');
 
 
-
+// This creates the prompts neccesary for the user to answer
 inquirer
   .prompt([
     {
       type: 'input',
-      message: 'Enter title:',
-      name:"title",
+      message: 'Enter managers name:',
+      name:"manager",
       validate: (value)=> {if(value){
           return true} else{return "Please insert value"}}
     },
     {
       type: 'input',
-      message: 'Enter description:',
-      name:"description",
+      message: 'Enter id:',
+      name:"id",
       validate: (value)=> {if(value){
         return true} else{return "Please insert value"}}
     },
     {
       type: 'input',
-      message: 'What are the steps required to install your project?',
-      name: 'installation',
+      message: 'Enter managers email',
+      name: 'email',
       validate: (value)=> {if(value){
         return true} else{return "Please insert value"}}
     },
     {
         type: 'input',
-        message: 'Provide instructions and examples for use',
-        name: 'usage',
+        message: 'Enter the maangers office number',
+        name: 'officenumber',
         validate: (value)=> {if(value){
             return true} else{return "Please insert value"}}
       },
