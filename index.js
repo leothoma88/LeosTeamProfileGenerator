@@ -8,6 +8,7 @@ const inquirer = require('inquirer');
 
 
 //Full page html template 
+const cardtemplates = []
 
 //Function tthat creates the prompts neccesary for the user to answer,but now just in one go
 function memberpush(){
@@ -47,39 +48,20 @@ inquirer
 
   ])
   .then(({name,id,email,role}) =>{
-    const readMe =`# ${title}
+//Takes over the only unshared attribute
+    var extrainfo = "";
+    if(role==="Manager"){
+      extrainfo="Office number: "
+
+    } else if (role= "Engineer: "){
+      extrainfo="GitHub: "
+    }else {
+      extrainfo="School: " 
+
+    }
     
-  * [Installation](#installation)
-  * [Usage](#usage)
-  * [Contribution](#contribution)
-  * [Credits](#credits)
-  * [License](#license)
   
-  ## Installation
-  ${installation}
-    
-  ## Usage
-  ${usage}
-    
-  ## Description
-  ${description}
-
-  ## Credit
-  ${credit}
-    
-  ## Contribution
-  ${contributing}
-
-  ## Test
-  ${test}
-
-  ## License
-  ${license}
-
-  # Contact Info
-  * GitHub: ${gitHub}
-  * Email: ${email}
-  `
+  
  Newfilegenerator(title,readMe);
 
    } 
