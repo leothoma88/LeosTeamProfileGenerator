@@ -3,6 +3,9 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 
+//Classes
+
+
 
 // This creates the prompts neccesary for the user to answer
 inquirer
@@ -34,51 +37,8 @@ inquirer
         name: 'officenumber',
         validate: (value)=> {if(value){
             return true} else{return "Please insert value"}}
-      },
-      {
-        type: 'input',
-        message: 'List your collaborators',
-        name: 'credits',
-        validate: (value)=> {if(value){
-            return true} else{return "Please insert value"}}
-      },
-      {
-        type: 'input',
-        message: 'Enter Test Instructions',
-        name: 'tests',
-        validate: (value)=> {if(value){
-            return true} else{return "Please insert value"}}
-      },
-      {
-        type: 'input',
-        message: 'Enter Contributing Guidelines:',
-        name: 'contributing',
-        validate: (value)=> {if(value){
-            return true} else{return "Please insert value"}}
-      },
-      {
-        type: 'list',
-        message: 'License:',
-        choices:["GNU AGPLv3","GNU GPLv3","GNU LGPLv3","Mozilla Public License 2.0","Apache License 2.0","MIT License","Boost Software License 1.0","The Unlicense"],
-        name: 'license',
-        validate: (value)=> {if(value){
-            return true} else{return "Please insert value"}}
-      },
-      {
-        type: 'input',
-        message: 'Enter Github Username:',
-        name: 'gitHub',
-        validate: (value)=> {if(value){
-            return true} else{return "Please insert value"}}
-      },
-      {
-        type: 'input',
-        message: 'Enter Email Address:',
-        name: 'email',
-        validate: (value)=> {if(value){
-            return true} else{return "Please insert value"}}
-      }
-
+        }
+      
 
 
   ])
