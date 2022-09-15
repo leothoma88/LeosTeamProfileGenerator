@@ -53,25 +53,127 @@ inquirer
   ])
   .then(({name,id,email,role}) =>{
 //Takes over the only unshared attribute
-    var extrainfo = "";
+    var extraInfo = "";
     if(role==="Manager"){
-      extrainfo="Office number: "
+      extraInfo="Office number: "
 
     } else if (role= "Engineer"){
-      extrainfo="GitHub: "
+      extraInfo="GitHub: "
     }else {
-      extrainfo="School: " 
+      extraInfo="School: " 
 
     }
 //Continues the prompts after 
-    inquirer.prom
-    
-  
-  
- 
+    inquirer
+    .prompt([
+        {
+          type: 'input',
+          message: 'Please enter ${extraInfo}: ',
+          name:"extraInfo",
+          validate: (value)=> {if(value){
+              return true} else{return "Please insert value"}}
+        },
+    { type: 'list',
+    message: 'Are there any other members you would like to add?',
+    choices:["yes","no"],
+    name: "addmore"
+   } ])
 
-   } 
-   );
+   .then(function({extraInfo,addmore}){
+     var newadd;
+     if(role=== "Manager"){
+       newadd = new Manager(name,id,email,extraInfo);
+     }else if (role === "Engineer"){
+       newadd = new Engineer(name,id,email,extraInfo);
+     } else{
+       newadd = new Intern (name,id,email,extraInfo);
+     }
+//Giving the option of continuing or finishing up
+     cardtemplates.push(newadd);
+     //Picks which role we have pushes to the html
+     addToHtmlBase(newadd)
+     .then(function() {
+       if(addmore === "yes"){
+         memberPush();
+       }else {
+         completed();
+       }
+     });
+   });
+  });
+}
+
+//These are the cards being added to the made array of html
+function addToHtmlBase(employees){
+  return new Promise (function (resolve,reject){
+
+    const name =employees.getName();
+    const role = employees.getRole();
+    const id = employees.getId();
+    const email = employees.getEmail();
+
+    let data = "";
+
+    if(role === "Manager"){
+      let officePHone = employees.getOfficeNumber();
+      data = `<div class="card employee-card manager-card">
+      <div class="card-header text-center">
+          <h2 class="card-title">${name}</h2>
+          <h4 class="card-title"><span class="material-symbols-outlined">
+              coffee
+              </span>Manager </h4>
+      </div>
+      <div class="card-body bg-light">
+          <ul class="list-group text-dark">
+              <li class="list-group-item">ID:${id}</li>
+              <li class="list-group-item">Email: <a href="${email}">${email}</a></li>
+              <li class="list-group-item">Office number: <a href="${officePHone}">${officePHone}</a></li>
+          </ul>
+      </div>
+  </div>`
+
+    }else if(role=== "Engineer"){
+      let gitHub = employees.getGithub();
+      data = `<div class="card employee-card engineer-card">
+      <div class="card-header text-center">
+          <h2 class="card-title">${name}</h2>
+          <h4 class="card-title"><span class="material-symbols-outlined">smart_toy
+              </span>
+              Engineer</h4>
+      </div>
+      <div class="card-body bg-light">
+          <ul class="list-group text-dark">
+              <li class="list-group-item">ID:${id}</li>
+              <li class="list-group-item">Email: <a href="${email}">${email}</a></li>
+              <li class="list-group-item">GitHub: <a href="" target="_blank" rel="">${gitHub}</a></li>
+          </ul>
+      </div>
+  </div>`
+    }else {
+      let school = employees.getSchool();
+      data = `
+      <div class="card employee-card intern-card">
+            <div class="card-header text-center">
+                <h2 class="card-title">${name}</h2>
+                <h4 class="card-title"><span class="material-symbols-outlined">
+                    school
+                    </span>
+                    Intern</h4>
+            </div>
+            <div class="card-body bg-light">
+                <ul class="list-group text-dark">
+                    <li class="list-group-item">ID:${id}</li>
+                    <li class="list-group-item">Email: <a href="${email}">${email}</a></li>
+                    <li class="list-group-item">School:${school}</li>
+                </ul>
+            </div>
+        </div>
+
+      `
+    }
+    fs.app
+
+  }
 }
 
 // Makes the original html
