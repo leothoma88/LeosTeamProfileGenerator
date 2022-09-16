@@ -4,11 +4,13 @@ const fs = require('fs');
 const inquirer = require('inquirer');
 
 //Classes
-
+const Engineer = require("./lib/Engineer");
+const Intern = require("./lib/Intern");
+const Manager = require("./lib/Manager")
 
 
 //Full page html template 
-const cardtemplates = []
+const cardtemplates = [];
 
 //Make page then adds the cards after prompts
 function startItUp(){ memberPush();pageGenerator()}
@@ -171,9 +173,15 @@ function addToHtmlBase(employees){
 
       `
     }
-    fs.app
+    fs.apppendFile("./dist/index.html",data,function(err){
+      if(err){
+        return reject(err);
+      };
+      return resolve();
+    })
+    
 
-  }
+  })
 }
 
 // Makes the original html
@@ -214,6 +222,20 @@ function addToHtmlBase(employees){
     }else
     console.log("HTML STARTED")
   })
+   }
+
+   function completed(){
+    const basepage =` </div>
+    </div>
+
+    </body>
+    </html>`;
+    fs.appendFile("./dist/index.html", basepage, function (err) {
+      if (err) {
+          console.log(err);
+      };
+  });
+  console.log("done");
    }
 
 
