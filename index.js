@@ -1,12 +1,11 @@
-
 // This calls on the inquirer package
-const fs = require('fs');
-const inquirer = require('inquirer');
+const inquirer = require("inquirer");
+const fs = require("fs");
 
 //Classes
-const Engineer = require("./lib/Engineer");
-const Intern = require("./lib/Intern");
-const Manager = require("./lib/Manager")
+const Engineer = require("./lib/Engineer.js");
+const Intern = require("./lib/Intern.js");
+const Manager = require("./lib/Manager.js")
 
 
 //Full page html template 
@@ -36,7 +35,7 @@ inquirer
     },
     {
       type: 'input',
-      message: 'Enter managers email',
+      message: 'Enter email',
       name: 'email',
       validate: (value)=> {if(value){
         return true} else{return "Please insert value"}}
@@ -70,7 +69,7 @@ inquirer
     .prompt([
         {
           type: 'input',
-          message: 'Please enter ${extraInfo}: ',
+          message: `Please enter ${extraInfo}: `,
           name:"extraInfo",
           validate: (value)=> {if(value){
               return true} else{return "Please insert value"}}
@@ -219,8 +218,7 @@ function addToHtmlBase(employees){
   fs.writeFile(`./dist/index.html`,basepage,(err)=>{
     if(err){
       console.log(err)
-    }else
-    console.log("HTML STARTED")
+    }
   })
    }
 
