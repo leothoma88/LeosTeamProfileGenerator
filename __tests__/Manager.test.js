@@ -1,4 +1,4 @@
-const Manager = require("../lib/Manager");
+const Manager = require("..Manager");
 
 test("OfficeNumber", () => {
   const testValue = 1234;
