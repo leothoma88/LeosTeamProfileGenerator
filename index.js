@@ -5,7 +5,8 @@ const fs = require("fs");
 //Classes
 const Engineer = require("./lib/Engineer.js");
 const Intern = require("./lib/Intern.js");
-const Manager = require("./lib/Manager.js")
+const Manager = require("./lib/Manager.js");
+
 
 
 //Full page html template 
@@ -81,6 +82,7 @@ inquirer
    } ])
 
    .then(function({extraInfo,addmore}){
+     console.log(name,id,email,"employeeinfo")
      var newadd;
      if(role=== "Manager"){
        newadd = new Manager(name,id,email,extraInfo);
@@ -106,8 +108,9 @@ inquirer
 
 //These are the cards being added to the made array of html
 function addToHtmlBase(employees){
+ 
   return new Promise (function (resolve,reject){
-
+    
     let name =employees.getName();
     let role = employees.getRole();
     let id = employees.getId();
