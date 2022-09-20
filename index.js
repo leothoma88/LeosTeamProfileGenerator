@@ -15,7 +15,7 @@ const cardtemplates = [];
 function startItUp(){ memberPush();pageGenerator()}
 
 
-//Function tthat creates the prompts neccesary for the user to answer,but now just in one go
+//Function that creates the prompts neccesary for the user to answer,but now just in one go
 function memberPush(){
 inquirer
   .prompt([
@@ -58,7 +58,7 @@ inquirer
     if(role==="Manager"){
       extraInfo="Office number: "
 
-    } else if (role= "Engineer"){
+    } else if (role=== "Engineer"){
       extraInfo="GitHub: "
     }else {
       extraInfo="School: " 
@@ -108,10 +108,10 @@ inquirer
 function addToHtmlBase(employees){
   return new Promise (function (resolve,reject){
 
-    const name =employees.getName();
-    const role = employees.getRole();
-    const id = employees.getId();
-    const email = employees.getEmail();
+    let name =employees.getName();
+    let role = employees.getRole();
+    let id = employees.getId();
+    let email = employees.getEmail();
 
     let data = "";
 
@@ -146,7 +146,7 @@ function addToHtmlBase(employees){
           <ul class="list-group text-dark">
               <li class="list-group-item">ID:${id}</li>
               <li class="list-group-item">Email: <a href="${email}">${email}</a></li>
-              <li class="list-group-item">GitHub: <a href="" target="_blank" rel="">${gitHub}</a></li>
+              <li class="list-group-item">GitHub: <a href="https://github.com/${gitHub}" target="_blank" rel="">${gitHub}</a></li>
           </ul>
       </div>
   </div>`
@@ -172,7 +172,7 @@ function addToHtmlBase(employees){
 
       `
     }
-    fs.apppendFile("./dist/index.html",data,function(err){
+    fs.appendFile("./dist/index.html",data,function(err){
       if(err){
         return reject(err);
       };
