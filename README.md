@@ -19,5 +19,9 @@ https://leothoma88.github.io/LeosTeamProfileGenerator/ (Links to an external sit
 
 https://github.com/leothoma88/LeosTeamProfileGenerator.git (Links to an external site.)
 
+VIDEO LINK:
+
+https://drive.google.com/file/d/1XmyghGPf7ywQQl3InRJiKRdzs38SW8Tf/view?usp=sharing
+
 
 
